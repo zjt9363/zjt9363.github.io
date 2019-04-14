@@ -15,19 +15,19 @@
 
 
 
-<meta name="description" content="矩阵快速幂可认为是快速幂算法的扩展。 有一种借助于 typedef 的较为方便的写法。">
+<meta name="description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
 <meta name="keywords" content="-数论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵快速幂">
 <meta property="og:url" content="http://zjt9363.top/2019/04/14/矩阵快速幂/index.html">
 <meta property="og:site_name" content="ZJT&#39;s blog">
-<meta property="og:description" content="矩阵快速幂可认为是快速幂算法的扩展。 有一种借助于 typedef 的较为方便的写法。">
+<meta property="og:description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdn.net/20180428195454154">
-<meta property="og:updated_time" content="2019-04-14T10:15:04.322Z">
+<meta property="og:updated_time" content="2019-04-14T11:52:52.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="矩阵快速幂">
-<meta name="twitter:description" content="矩阵快速幂可认为是快速幂算法的扩展。 有一种借助于 typedef 的较为方便的写法。">
+<meta name="twitter:description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20180428195454154">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -107,6 +107,8 @@
         </hgroup>
 
         
+        <p class="header-subtitle">像树一样，一半在图里安详，一半在风中张扬</p>
+        
 
         
             <form id="search-form">
@@ -136,11 +138,6 @@
                         </div>
                         
                         
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
                     </div>
                     
                 </div>
@@ -152,8 +149,6 @@
                         
                         <li>友情链接</li>
                         
-                        
-                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -170,8 +165,6 @@
                         
                             <li><a href="/archives/">所有文章</a></li>
                         
-                            <li><a href="/tags/">标签云</a></li>
-                        
                         </ul>
                     </nav>
                     <nav class="header-nav">
@@ -181,8 +174,6 @@
                             
                                 <a class="fa GitHub" href="https://github.com/zjt9363" title="GitHub"></a>
                             
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -190,7 +181,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">-数论</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-git/">-hexo -git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">-数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论-板子/">-数论 -板子</a></li></ul>
                     </div>
                 </section>
                 
@@ -199,22 +190,18 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                      <a class="main-nav-link switch-friends-link" href="https://yisin.top">可爱的Yisin</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                      <a class="main-nav-link switch-friends-link" href="https://www.cnblogs.com/nervendnig/">神经末梢</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                      <a class="main-nav-link switch-friends-link" href="https://lhb1998.github.io/hl17019.github.io/">舍友lhb</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="/chierqj.github.io">赤耳</a>
                     
                     </div>
                 </section>
                 
 
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">专注于前端</div>
-                </section>
                 
             </div>
         </div>
@@ -236,14 +223,14 @@
               <h1 class="header-author"><a href="/" title="回到主页">青城</a></h1>
             </hgroup>
             
+            <p class="header-subtitle">像树一样，一半在图里安详，一半在风中张扬</p>
+            
             <nav class="header-menu">
                 <ul>
                 
                     <li><a href="/">主页</a></li>
                 
                     <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
                 
                 <div class="clearfix"></div>
                 </ul>
@@ -254,8 +241,6 @@
                                 <a class="fa Email" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=LBUfGh8eGB0VHGxdXQJPQ0E" title="Email"></a>
                             
                                 <a class="fa GitHub" target="_blank" href="https://github.com/zjt9363" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
                             
                         </ul>
             </nav>
@@ -307,7 +292,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>矩阵快速幂可认为是快速幂算法的扩展。 有一种借助于 typedef 的较为方便的写法。<br><a id="more"></a></p>
+        <p>关于快速幂以及矩阵快速幂的基础知识介绍。<br>矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。<br><a id="more"></a></p>
 <h2 id="一、快速幂部分"><a href="#一、快速幂部分" class="headerlink" title="一、快速幂部分"></a>一、快速幂部分</h2><p>求a^b，代码如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int Quickpow(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int ans = 1;</span><br><span class="line">    while (y)</span><br><span class="line">    &#123;</span><br><span class="line">        if (y &amp; 1)</span><br><span class="line">            ans *= x;</span><br><span class="line">        x *= x;</span><br><span class="line">        y &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    cout &lt;&lt; Quickpow(a, b) &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其中 “&gt;&gt;”位移运算,就是把y转换为二进制数，整体向右移一位，高位补零，最低位消失，通常右移一位就等价于y除以2再赋给b。 “&amp;”可判断y的二进制数最后一位是否为1，等价于判断奇偶。</p>
 <p>这里举例说明绿色部分代码。</p>
@@ -316,7 +301,7 @@
 <p>其中要理解x<em>=x这一步，x</em>x==x^2,下一步再乘，就是x^2<em>x^2==x^4,然后同理  x^4 </em> x^4 = x^8 …在循环中x–&gt;x^2–&gt;x^4–&gt;x^8–&gt;x^16–&gt;x^32…….指数正是 2^i 啊，再看上面的例子，a^11=  a^(2^0) <em> a^(2^1) </em> a^(2^3)，这三项就完美解决了。</p>
 <h2 id="二、矩阵-amp-快速幂部分"><a href="#二、矩阵-amp-快速幂部分" class="headerlink" title="二、矩阵&amp;快速幂部分"></a>二、矩阵&amp;快速幂部分</h2><p>继续上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">struct Matrix //结构体，矩阵 </span><br><span class="line">&#123;</span><br><span class="line">    int m[maxn][maxn];</span><br><span class="line">&#125;;</span><br><span class="line">Matrix Mul(Matrix a, Matrix b, int N) //两个N阶矩阵的乘积 </span><br><span class="line">&#123;</span><br><span class="line">    Matrix ans;</span><br><span class="line">    for (int i = 0; i &lt; N; i++)</span><br><span class="line">        for (int j = 0; j &lt; N; j++)</span><br><span class="line">            ans.m[i][j] = 0;</span><br><span class="line">    for (int i = 0; i &lt; N; i++)</span><br><span class="line">        for (int j = 0; j &lt; N; j++)</span><br><span class="line">            for (int k = 0; k &lt; N; k++)</span><br><span class="line">                ans.m[i][j] += a.m[i][k] * b.m[k][j];</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">Matrix Quickpow(Matrix k, int N, int n) //N阶矩阵的n次幂 </span><br><span class="line">&#123;</span><br><span class="line">    Matrix ans; //声明一个单位矩阵</span><br><span class="line">    for (int i = 0; i &lt; N; i++)</span><br><span class="line">        for (int j = 0; j &lt; n; j++)</span><br><span class="line">            if (i == j)</span><br><span class="line">                ans.m[i][j] = 1;</span><br><span class="line">            else</span><br><span class="line">                ans.m[i][j] = 0;</span><br><span class="line">    while (n)</span><br><span class="line">    &#123;</span><br><span class="line">        if (n &amp; 1)</span><br><span class="line">            k = Mul(k, ans, N);</span><br><span class="line">        k = Mul(k, k, N);</span><br><span class="line">        n &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>POJ 3070 题目，求斐波那契数列。<br>直接递推的局限性：<br>（1）本题让你递推的斐波那契数n高达10亿。测试时间仅1秒的时间，for循环用递推公式递归导致超时。<br>（2）通过打表实现随机访问根本不可能，先把斐波那契数列求到10亿，然后想去进行随机访问。题目未给出那么多内存，数组也开不到10亿。<br>因此它可以用矩阵快速幂来写。<br>观察f[n] = f[n-1]+f[n-2] 第n相是由第n-1项和第n-2项递推而来。<br>同理，第n+1项由第n项和第n-1项递推而来。<br>因此可以用矩阵表示：<br><img src="https://img-blog.csdn.net/20180428195454154" alt="avatar"></p>
-<p>后续再碰到类似题目再补充</p>
+<p>后续会再补充矩阵快速幂的题目。</p>
 
       
     </div>
@@ -328,7 +313,7 @@
         <p><span>本文标题:</span><a href="/2019/04/14/矩阵快速幂/">矩阵快速幂</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">青城</a></p>
         <p><span>发布时间:</span>2019-04-14, 18:10:00</p>
-        <p><span>最后更新:</span>2019-04-14, 18:15:04</p>
+        <p><span>最后更新:</span>2019-04-14, 19:52:52</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/14/矩阵快速幂/" title="矩阵快速幂">http://zjt9363.top/2019/04/14/矩阵快速幂/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zjt9363.top/2019/04/14/矩阵快速幂/　　作者: 青城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -426,7 +411,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/扩展欧几里得算法/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/米勒拉宾算法/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/矩阵快速幂/">矩阵快速幂</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/利用hexo创建属于自己的博客/">用hexo创建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/扩展欧几里得算法/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/米勒拉宾算法/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/矩阵快速幂/">矩阵快速幂</a></li></ul>
 
 
 
