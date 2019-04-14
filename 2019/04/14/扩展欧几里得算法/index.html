@@ -15,13 +15,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZJT&#39;s blog">
-<meta property="og:url" content="http://zjt9363.top/archives/2019/04/index.html">
+<meta name="description" content="利用欧几里得算法思想求得不定方程 ax+by=gcd(a,b) 的一组解">
+<meta name="keywords" content="-数论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扩展欧几里得算法">
+<meta property="og:url" content="http://zjt9363.top/2019/04/14/扩展欧几里得算法/index.html">
 <meta property="og:site_name" content="ZJT&#39;s blog">
+<meta property="og:description" content="利用欧几里得算法思想求得不定方程 ax+by=gcd(a,b) 的一组解">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-14T09:27:04.529Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZJT&#39;s blog">
+<meta name="twitter:title" content="扩展欧几里得算法">
+<meta name="twitter:description" content="利用欧几里得算法思想求得不定方程 ax+by=gcd(a,b) 的一组解">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -53,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2019/4 | ZJT&#39;s blog</title>
+<title>扩展欧几里得算法 | ZJT&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,8 +68,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -253,134 +258,178 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-扩展欧几里得算法" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2019/04/14/扩展欧几里得算法/" class="article-date">
+      <time datetime="2019-04-14T09:58:24.422Z" itemprop="datePublished">2019-04-14</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      扩展欧几里得算法
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/算法模板/">算法模板</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">-数论</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/04/14/米勒拉宾算法/" class="archive-article-date">
-      <time datetime="2019-04-14T09:58:24.429Z" itemprop="datePublished">04-14</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/14/米勒拉宾算法/">米勒拉宾算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/算法模板/">算法模板</a>
+        <p>利用欧几里得算法思想求得不定方程 a<em>x+b</em>y=gcd(a,b) 的一组解<br><a id="more"></a><br>通俗地讲就是辗转相除法。<br>若有两个数a和b，求两个数的公因数。<br>可以枚举两个数的因子，复杂度为O(n)，数据大的时候就很慢了。<br>于是便有了欧几里得算法：gcd(a,b)=gcd(b,a mod b)<br>证明：a可以表示成a = kb + r，则r = a mod b<br>假设d是a,b的一个公约数，则有<br>d|a, d|b，而r = a - kb，因此d|r<br>因此d是(b,a mod b)的公约数<br>假设d 是(b,a mod b)的公约数，则<br>d | b , d |r ，但是a = kb +r<br>因此d也是(a,b)的公约数<br>因此(a,b)和(b,a mod b)的公约数是一样的，其最大公约数也必然相等。<br>复杂度为O(log min(a,b)).</p>
+<h3 id="c-代码"><a href="#c-代码" class="headerlink" title="c++代码"></a>c++代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int gcd(int a, int b)</span><br><span class="line">&#123;</span><br><span class="line">    return b ? gcd(b, a % b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h2><p>利用欧几里得算法思想求得不定方程 a<em>x+b</em>y=gcd(a,b) 的一组解。<br>原理如下：<br>设a&gt;b<br>1）当b=0有 a<em>x=gcd(a,b)=a，即x=1，而y为任意数，为了统一我们令y=0；<br>2）接下来看一组方程：<br>方程一 ： ax1+by1=gcd(a,b)<br>方程二 ： bx2+(a%b)y2=gcd(b,a%b)      (方程二由欧几里得算法 gcd(a,b) =gcd(b,a%b) 得到）<br>两个等式右边相等，所以 ax1+by1 = bx2+(a%b)y2<br>又a%b=a-floor(a/b)</em>b     (这里floor的意思是向下取整，在c++代码中int类型可以不用floor）<br>得ax1+by1=bx2+[a-floor(a/b)<em>b]</em>y2<br>在这里把a，b当成未知数，根据多项式恒等定理由x1<em>a+y1</em>b=y2<em>a+[x2-floor(a/b)</em>y2]<em>b可得<br>x1=y2<br>y1=[x2-floor(a/b)</em>y2]<br>由最终解x=1,y=0不断向前推出目标解x1,y1<br>不难想到利用递归求解，根据上述过程得到以下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int exgcd(int a, int b, int &amp;x, int &amp;y)</span><br><span class="line">&#123;</span><br><span class="line">    if (b == 0)</span><br><span class="line">    &#123;</span><br><span class="line">        x = 1;</span><br><span class="line">        y = 0;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    int gcd = exgcd(b, a % b, x, y);</span><br><span class="line">    int x2 = x, y2 = y;</span><br><span class="line">    x = y2;</span><br><span class="line">    y = x2 - (a / b) * y2;</span><br><span class="line">    return gcd;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int x, y, a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    cout &lt;&lt; &quot;ab最大公约数:&quot; &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; exgcd(a, b, x, y) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;x = &quot; &lt;&lt; x &lt;&lt; &quot;   y = &quot; &lt;&lt; y &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
     </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">-数论</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/04/14/扩展欧几里得算法/">扩展欧几里得算法</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">青城</a></p>
+        <p><span>发布时间:</span>2019-04-14, 17:58:24</p>
+        <p><span>最后更新:</span>2019-04-14, 17:27:04</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/14/扩展欧几里得算法/" title="扩展欧几里得算法">http://zjt9363.top/2019/04/14/扩展欧几里得算法/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zjt9363.top/2019/04/14/扩展欧几里得算法/　　作者: 青城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/04/14/米勒拉宾算法/">
+                    米勒拉宾算法
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/04/14/矩阵快速幂/">
+                    矩阵快速幂
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/04/14/扩展欧几里得算法/" class="archive-article-date">
-      <time datetime="2019-04-14T09:58:24.422Z" itemprop="datePublished">04-14</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#c-代码"><span class="toc-number">1.</span> <span class="toc-text">c++代码</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展欧几里得算法"><span class="toc-number"></span> <span class="toc-text">扩展欧几里得算法</span></a>
+        
+    </li></div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/14/扩展欧几里得算法/">扩展欧几里得算法</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"扩展欧几里得算法　| ZJT's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/算法模板/">算法模板</a>
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/04/14/米勒拉宾算法/" title="上一篇: 米勒拉宾算法">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/04/14/矩阵快速幂/" title="下一篇: 矩阵快速幂">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">-数论</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/04/14/矩阵快速幂/" class="archive-article-date">
-      <time datetime="2019-04-14T09:58:24.415Z" itemprop="datePublished">04-14</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/米勒拉宾算法/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/扩展欧几里得算法/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/矩阵快速幂/">矩阵快速幂</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/14/矩阵快速幂/">矩阵快速幂</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/算法模板/">算法模板</a>
-    </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">-数论</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
