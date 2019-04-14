@@ -15,18 +15,21 @@
 
 
 
-<meta name="description" content="例题：利用扩展欧几里得算法思想求得不定方程 ax+by=gcd(a,b) 的一组解它还可以用来求除法逆元。">
-<meta name="keywords" content="数论">
+<meta name="description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
+<meta name="keywords" content="数论,板子">
 <meta property="og:type" content="article">
-<meta property="og:title" content="扩展欧几里得算法">
-<meta property="og:url" content="http://zjt9363.top/2019/04/14/扩展欧几里得算法/index.html">
+<meta property="og:title" content="矩阵快速幂">
+<meta property="og:url" content="http://zjt9363.top/posts/7f45ba65/index.html">
 <meta property="og:site_name" content="ZJT&#39;s blog">
-<meta property="og:description" content="例题：利用扩展欧几里得算法思想求得不定方程 ax+by=gcd(a,b) 的一组解它还可以用来求除法逆元。">
+<meta property="og:description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-14T13:30:08.141Z">
+<meta property="og:image" content="http://bmob-cdn-24906.b0.upaiyun.com/2019/04/14/06574ee34041275e80ac093b5622aceb.jpg">
+<meta property="og:image" content="https://img-blog.csdn.net/20180428195454154">
+<meta property="og:updated_time" content="2019-04-14T15:34:14.464Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="扩展欧几里得算法">
-<meta name="twitter:description" content="例题：利用扩展欧几里得算法思想求得不定方程 ax+by=gcd(a,b) 的一组解它还可以用来求除法逆元。">
+<meta name="twitter:title" content="矩阵快速幂">
+<meta name="twitter:description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
+<meta name="twitter:image" content="http://bmob-cdn-24906.b0.upaiyun.com/2019/04/14/06574ee34041275e80ac093b5622aceb.jpg">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>扩展欧几里得算法 | ZJT&#39;s blog</title>
+<title>矩阵快速幂 | ZJT&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -246,11 +249,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-扩展欧几里得算法" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-矩阵快速幂" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/14/扩展欧几里得算法/" class="article-date">
-      <time datetime="2019-04-14T10:16:38.000Z" itemprop="datePublished">2019-04-14</time>
+      <a href="/posts/7f45ba65/" class="article-date">
+      <time datetime="2019-04-14T10:10:00.000Z" itemprop="datePublished">2019-04-14</time>
 </a>
 
 
@@ -265,7 +268,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      扩展欧几里得算法
+      矩阵快速幂
     </h1>
   
 
@@ -280,7 +283,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/板子/">板子</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -290,12 +293,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>例题：利用扩展欧几里得算法思想求得不定方程 a<em>x+b</em>y=gcd(a,b) 的一组解<br>它还可以用来求除法逆元。<br><a id="more"></a></p>
-<h2 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h2><p>通俗地讲就是辗转相除法。<br>若有两个数a和b，求两个数的公因数。<br>可以枚举两个数的因子，复杂度为O(n)，数据大的时候就很慢了。<br>于是便有了欧几里得算法：gcd(a,b)=gcd(b,a mod b)<br>证明：a可以表示成a = kb + r，则r = a mod b<br>假设d是a,b的一个公约数，则有<br>d|a, d|b，而r = a - kb，因此d|r<br>因此d是(b,a mod b)的公约数<br>假设d 是(b,a mod b)的公约数，则<br>d | b , d |r ，但是a = kb +r<br>因此d也是(a,b)的公约数<br>因此(a,b)和(b,a mod b)的公约数是一样的，其最大公约数也必然相等。<br>复杂度为O(log min(a,b)).</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int gcd(int a, int b)</span><br><span class="line">&#123;</span><br><span class="line">    return b ? gcd(b, a % b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h2><p>利用欧几里得算法思想求得不定方程 a<em>x+b</em>y=gcd(a,b) 的一组解。<br>原理如下：<br>设a&gt;b<br>1）当b=0有 a<em>x=gcd(a,b)=a，即x=1，而y为任意数，为了统一我们令y=0；<br>2）接下来看一组方程：<br>方程一 ： ax1+by1=gcd(a,b)<br>方程二 ： bx2+(a%b)y2=gcd(b,a%b)      (方程二由欧几里得算法 gcd(a,b) =gcd(b,a%b) 得到）<br>两个等式右边相等，所以 ax1+by1 = bx2+(a%b)y2<br>又a%b=a-floor(a/b)</em>b     (这里floor的意思是向下取整，在c++代码中int类型可以不用floor）<br>得ax1+by1=bx2+[a-floor(a/b)<em>b]</em>y2<br>在这里把a，b当成未知数，根据多项式恒等定理由x1<em>a+y1</em>b=y2<em>a+[x2-floor(a/b)</em>y2]<em>b可得<br>x1=y2<br>y1=[x2-floor(a/b)</em>y2]<br>由最终解x=1,y=0不断向前推出目标解x1,y1<br>不难想到利用递归求解，根据上述过程得到以下代码</p>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int exgcd(int a, int b, int &amp;x, int &amp;y)</span><br><span class="line">&#123;</span><br><span class="line">    if (b == 0)</span><br><span class="line">    &#123;</span><br><span class="line">        x = 1;</span><br><span class="line">        y = 0;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    int gcd = exgcd(b, a % b, x, y);</span><br><span class="line">    int x2 = x, y2 = y;</span><br><span class="line">    x = y2;</span><br><span class="line">    y = x2 - (a / b) * y2;</span><br><span class="line">    return gcd;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int x, y, a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    cout &lt;&lt; &quot;ab最大公约数:&quot; &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; exgcd(a, b, x, y) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;x = &quot; &lt;&lt; x &lt;&lt; &quot;   y = &quot; &lt;&lt; y &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>关于除法逆元，请看其他博客。</p>
+        <p>关于快速幂以及矩阵快速幂的基础知识介绍。<br>矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。<br><img src="http://bmob-cdn-24906.b0.upaiyun.com/2019/04/14/06574ee34041275e80ac093b5622aceb.jpg" alt><br><a id="more"></a></p>
+<h2 id="一、快速幂部分"><a href="#一、快速幂部分" class="headerlink" title="一、快速幂部分"></a>一、快速幂部分</h2><p>求a^b，代码如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int Quickpow(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int ans = 1;</span><br><span class="line">    while (y)</span><br><span class="line">    &#123;</span><br><span class="line">        if (y &amp; 1)</span><br><span class="line">            ans *= x;</span><br><span class="line">        x *= x;</span><br><span class="line">        y &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    cout &lt;&lt; Quickpow(a, b) &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中 “&gt;&gt;”位移运算,就是把y转换为二进制数，整体向右移一位，高位补零，最低位消失，通常右移一位就等价于y除以2再赋给b。 “&amp;”可判断y的二进制数最后一位是否为1，等价于判断奇偶。</p>
+<p>这里举例说明绿色部分代码。</p>
+<p>eg：求a^11</p>
+<p>11的二进制数是1011=2^0+2^1+2^3;</p>
+<p>其中要理解x<em>=x这一步，x</em>x==x^2,下一步再乘，就是x^2<em>x^2==x^4,然后同理  x^4 </em> x^4 = x^8 …在循环中x–&gt;x^2–&gt;x^4–&gt;x^8–&gt;x^16–&gt;x^32…….指数正是 2^i 啊，再看上面的例子，a^11=  a^(2^0) <em> a^(2^1) </em> a^(2^3)，这三项就完美解决了。</p>
+<h2 id="二、矩阵-amp-快速幂部分"><a href="#二、矩阵-amp-快速幂部分" class="headerlink" title="二、矩阵&amp;快速幂部分"></a>二、矩阵&amp;快速幂部分</h2><p>继续上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">struct Matrix //结构体，矩阵 </span><br><span class="line">&#123;</span><br><span class="line">    int m[maxn][maxn];</span><br><span class="line">&#125;;</span><br><span class="line">Matrix Mul(Matrix a, Matrix b, int N) //两个N阶矩阵的乘积 </span><br><span class="line">&#123;</span><br><span class="line">    Matrix ans;</span><br><span class="line">    for (int i = 0; i &lt; N; i++)</span><br><span class="line">        for (int j = 0; j &lt; N; j++)</span><br><span class="line">            ans.m[i][j] = 0;</span><br><span class="line">    for (int i = 0; i &lt; N; i++)</span><br><span class="line">        for (int j = 0; j &lt; N; j++)</span><br><span class="line">            for (int k = 0; k &lt; N; k++)</span><br><span class="line">                ans.m[i][j] += a.m[i][k] * b.m[k][j];</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">Matrix Quickpow(Matrix k, int N, int n) //N阶矩阵的n次幂 </span><br><span class="line">&#123;</span><br><span class="line">    Matrix ans; //声明一个单位矩阵</span><br><span class="line">    for (int i = 0; i &lt; N; i++)</span><br><span class="line">        for (int j = 0; j &lt; n; j++)</span><br><span class="line">            if (i == j)</span><br><span class="line">                ans.m[i][j] = 1;</span><br><span class="line">            else</span><br><span class="line">                ans.m[i][j] = 0;</span><br><span class="line">    while (n)</span><br><span class="line">    &#123;</span><br><span class="line">        if (n &amp; 1)</span><br><span class="line">            k = Mul(k, ans, N);</span><br><span class="line">        k = Mul(k, k, N);</span><br><span class="line">        n &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>POJ 3070 题目，求斐波那契数列。<br>直接递推的局限性：<br>（1）本题让你递推的斐波那契数n高达10亿。测试时间仅1秒的时间，for循环用递推公式递归导致超时。<br>（2）通过打表实现随机访问根本不可能，先把斐波那契数列求到10亿，然后想去进行随机访问。题目未给出那么多内存，数组也开不到10亿。<br>因此它可以用矩阵快速幂来写。<br>观察f[n] = f[n-1]+f[n-2] 第n相是由第n-1项和第n-2项递推而来。<br>同理，第n+1项由第n项和第n-1项递推而来。<br>因此可以用矩阵表示：<br><img src="https://img-blog.csdn.net/20180428195454154" alt="avatar"></p>
+<p>后续会再补充矩阵快速幂的题目。</p>
 
       
     </div>
@@ -304,13 +311,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/14/扩展欧几里得算法/">扩展欧几里得算法</a></p>
+        <p><span>本文标题:</span><a href="/posts/7f45ba65/">矩阵快速幂</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">青城</a></p>
-        <p><span>发布时间:</span>2019-04-14, 18:16:38</p>
-        <p><span>最后更新:</span>2019-04-14, 21:30:08</p>
+        <p><span>发布时间:</span>2019-04-14, 18:10:00</p>
+        <p><span>最后更新:</span>2019-04-14, 23:34:14</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/14/扩展欧几里得算法/" title="扩展欧几里得算法">http://zjt9363.top/2019/04/14/扩展欧几里得算法/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://zjt9363.top/2019/04/14/扩展欧几里得算法/　　作者: 青城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/posts/7f45ba65/" title="矩阵快速幂">http://zjt9363.top/posts/7f45ba65/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zjt9363.top/posts/7f45ba65/　　作者: 青城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -323,17 +330,11 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/14/利用hexo创建属于自己的博客/">
-                    用hexo创建属于自己的博客
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/04/14/米勒拉宾算法/">
+                <a href="/posts/985363e6/">
                     米勒拉宾算法
                 </a>
             </div>
+        
         
     </nav>
 
@@ -343,7 +344,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#欧几里得算法"><span class="toc-number">1.</span> <span class="toc-text">欧几里得算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">1.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展欧几里得算法"><span class="toc-number">2.</span> <span class="toc-text">扩展欧几里得算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-1"><span class="toc-number">2.1.</span> <span class="toc-text">代码</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、快速幂部分"><span class="toc-number">1.</span> <span class="toc-text">一、快速幂部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、矩阵-amp-快速幂部分"><span class="toc-number">2.</span> <span class="toc-text">二、矩阵&amp;快速幂部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-number">3.</span> <span class="toc-text">应用</span></a></li></ol>
         
     </div>
     <style>
@@ -379,7 +380,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"扩展欧几里得算法　| ZJT's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"矩阵快速幂　| ZJT's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -399,7 +400,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/14/利用hexo创建属于自己的博客/" title="上一篇: 用hexo创建属于自己的博客">
+            <a href="/posts/985363e6/" title="上一篇: 米勒拉宾算法">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -407,13 +408,11 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/04/14/米勒拉宾算法/" title="下一篇: 米勒拉宾算法">
-                <i class="fa fa-angle-right"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/利用hexo创建属于自己的博客/">用hexo创建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/扩展欧几里得算法/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/米勒拉宾算法/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/14/矩阵快速幂/">矩阵快速幂</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/44f79f02/">用hexo创建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/32ceef63/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/985363e6/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/7f45ba65/">矩阵快速幂</a></li></ul>
 
 
 
