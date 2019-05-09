@@ -23,13 +23,12 @@
 <meta property="og:site_name" content="ZJT&#39;s blog">
 <meta property="og:description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://bmob-cdn-24906.b0.upaiyun.com/2019/04/14/06574ee34041275e80ac093b5622aceb.jpg">
 <meta property="og:image" content="https://img-blog.csdn.net/20180428195454154">
-<meta property="og:updated_time" content="2019-04-14T17:16:25.690Z">
+<meta property="og:updated_time" content="2019-05-09T04:54:03.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="矩阵快速幂">
 <meta name="twitter:description" content="关于快速幂以及矩阵快速幂的基础知识介绍。矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。">
-<meta name="twitter:image" content="http://bmob-cdn-24906.b0.upaiyun.com/2019/04/14/06574ee34041275e80ac093b5622aceb.jpg">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180428195454154">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -182,7 +181,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/板子/">板子</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/板子/">板子</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/硬件/">硬件</a></li></ul>
                     </div>
                 </section>
                 
@@ -293,7 +292,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>关于快速幂以及矩阵快速幂的基础知识介绍。<br>矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。<br><img src="http://bmob-cdn-24906.b0.upaiyun.com/2019/04/14/06574ee34041275e80ac093b5622aceb.jpg" alt><br><a id="more"></a></p>
+        <p>关于快速幂以及矩阵快速幂的基础知识介绍。<br>矩阵快速幂可以用来解决部分常系数非齐次递推通向公式(也可以用线代的知识推公式，大概率会自闭)。<br><a id="more"></a></p>
 <h2 id="一、快速幂部分"><a href="#一、快速幂部分" class="headerlink" title="一、快速幂部分"></a>一、快速幂部分</h2><p>求a^b，代码如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int Quickpow(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int ans = 1;</span><br><span class="line">    while (y)</span><br><span class="line">    &#123;</span><br><span class="line">        if (y &amp; 1)</span><br><span class="line">            ans *= x;</span><br><span class="line">        x *= x;</span><br><span class="line">        y &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    cout &lt;&lt; Quickpow(a, b) &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其中 “&gt;&gt;”位移运算,就是把y转换为二进制数，整体向右移一位，高位补零，最低位消失，通常右移一位就等价于y除以2再赋给b。 “&amp;”可判断y的二进制数最后一位是否为1，等价于判断奇偶。</p>
 <p>这里举例说明绿色部分代码。</p>
@@ -314,7 +313,7 @@
         <p><span>本文标题:</span><a href="/posts/7f45ba65/">矩阵快速幂</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">青城</a></p>
         <p><span>发布时间:</span>2019-04-14, 18:10:00</p>
-        <p><span>最后更新:</span>2019-04-15, 01:16:25</p>
+        <p><span>最后更新:</span>2019-05-09, 12:54:03</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/posts/7f45ba65/" title="矩阵快速幂">http://zjt9363.top/posts/7f45ba65/</a>
             <span class="copy-path" data-clipboard-text="原文: http://zjt9363.top/posts/7f45ba65/　　作者: 青城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -412,7 +411,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/44f79f02/">用hexo创建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/32ceef63/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/985363e6/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/7f45ba65/">矩阵快速幂</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/49e54578/">电子电路设计大赛</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/44f79f02/">用hexo创建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/32ceef63/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/985363e6/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/7f45ba65/">矩阵快速幂</a></li></ul>
 
 
 
