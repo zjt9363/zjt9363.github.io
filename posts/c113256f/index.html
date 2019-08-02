@@ -15,14 +15,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://zjt9363.top/tags/index.html">
+<meta name="description" content="「Codeforce 527 C」最大连续0+线段树题意是给定一个矩形，不停地纵向或横向切割，问每次切割后，最大的矩形面积是多少。（）最大矩形面积=最长的长*最宽的宽）">
+<meta name="keywords" content="题解,Segment Tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「Codeforce 527 C」.md">
+<meta property="og:url" content="http://zjt9363.top/posts/c113256f/index.html">
 <meta property="og:site_name" content="ZJT&#39;s blog">
+<meta property="og:description" content="「Codeforce 527 C」最大连续0+线段树题意是给定一个矩形，不停地纵向或横向切割，问每次切割后，最大的矩形面积是多少。（）最大矩形面积=最长的长*最宽的宽）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-14T10:24:07.859Z">
+<meta property="og:updated_time" content="2019-08-02T08:06:25.438Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="「Codeforce 527 C」.md">
+<meta name="twitter:description" content="「Codeforce 527 C」最大连续0+线段树题意是给定一个矩形，不停地纵向或横向切割，问每次切割后，最大的矩形面积是多少。（）最大矩形面积=最长的长*最宽的宽）">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -54,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>tags | ZJT&#39;s blog</title>
+<title>「Codeforce 527 C」.md | ZJT&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -64,7 +68,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -242,11 +246,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-codeforce527C-md" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/tags/index.html" class="article-date">
-      <time datetime="2019-04-14T10:24:07.000Z" itemprop="datePublished">2019-04-14</time>
+      <a href="/posts/c113256f/" class="article-date">
+      <time datetime="2019-08-02T07:51:27.000Z" itemprop="datePublished">2019-08-02</time>
 </a>
 
 
@@ -261,7 +265,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      「Codeforce 527 C」.md
     </h1>
   
 
@@ -269,8 +273,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Segment-Tree/">Segment Tree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/题解/">题解</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -278,96 +290,74 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
+        <p>「Codeforce 527 C」最大连续0+线段树<br>题意是给定一个矩形，不停地纵向或横向切割，问每次切割后，最大的矩形面积是多少。（）最大矩形面积=最长的长*最宽的宽）<br><a id="more"></a></p>
+<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://codeforces.com/problemset/problem/527/C" target="_blank" rel="noopener">https://codeforces.com/problemset/problem/527/C</a></p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>长宽都是10^5，所以，用01序列表示每个点是否被切割，然后，<br>最长的长就是长的最长连续0的数量+1<br>最长的宽就是宽的最长连续0的数量+1<br>于是用线段树维护最长连续零<br>对于线段树的每个节点，记录四个信息，l从左便开始连续零的个数，r从右边开始连续零的个数，m此区间最大连续零的个数，all是否整个区间都是0。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><code>`</code></p>
+<p>#include &lt;bits/stdc++.h&gt;<br>using namespace std;<br>typedef long long ll;<br>const ll MAX = 1000;<br>const ll MAXN = 200010;</p>
+<p>#define INF 0x3f3f3f3f</p>
+<p>#define LINF 0x3f3f3f3f3f3f3f3f</p>
+<p>#define mem(a, b) memset(a, b, sizeof(a))<br>ll aw[MAXN], ah[MAXN], w, h, n, p;<br>char c;<br>struct node<br>{<br>    ll l, r, m;<br>    bool all;<br>} t[2][MAXN &lt;&lt; 2];<br>void pushup(ll rt, ll id)<br>{<br>    node &amp;cur = t[id][rt], &amp;lson = t[id][rt &lt;&lt; 1], &amp;rson = t[id][rt &lt;&lt; 1 | 1];<br>    cur.l = lson.l + (lson.all ? rson.l : 0);<br>    cur.r = rson.r + (rson.all ? lson.r : 0);<br>    cur.m = max(lson.r + rson.l, max(lson.m, rson.m));<br>    cur.all = lson.all &amp;&amp; rson.all;<br>}<br>void Build(ll l, ll r, ll rt, ll id)<br>{<br>    if (l == r)<br>    {<br>        t[id][rt].l = t[id][rt].r = t[id][rt].m = t[id][rt].all = 1;<br>        if ((id == 0 &amp;&amp; l == w) || (id == 1 &amp;&amp; l == h))<br>            t[id][rt].l = t[id][rt].r = t[id][rt].m = t[id][rt].all = 0;<br>        return;<br>    }<br>    ll m = (l + r) &gt;&gt; 1;<br>    Build(l, m, rt &lt;&lt; 1, id);<br>    Build(m + 1, r, rt &lt;&lt; 1 | 1, id);<br>    pushup(rt, id);<br>}<br>void update(ll L, ll l, ll r, ll rt, ll id)<br>{<br>    if (l == r)<br>    {<br>        t[id][rt].l = t[id][rt].r = t[id][rt].m = t[id][rt].all = 0;<br>        return;<br>    }<br>    ll m = (l + r) &gt;&gt; 1;<br>    L &lt;= m ? update(L, l, m, rt &lt;&lt; 1, id) : update(L, m + 1, r, rt &lt;&lt; 1 | 1, id);<br>    pushup(rt, id);<br>}<br>int main()<br>{<br>    cin &gt;&gt; w &gt;&gt; h &gt;&gt; n;<br>    mem(aw, 0), mem(ah, 0), mem(t, 0);<br>    aw[0] = ah[0] = 1;<br>    Build(1, w, 1, 0);<br>    Build(1, h, 1, 1);<br>    for (ll i = 0; i &lt; n; i++)<br>    {<br>        cin &gt;&gt; c &gt;&gt; p;<br>        c == ‘H’ ? update(p, 1, h, 1, 1) : update(p, 1, w, 1, 0);<br>        cout &lt;&lt; (t[0][1].m + 1) * (t[1][1].m + 1) &lt;&lt; endl;<br>    }<br>    return 0;<br>}</p>
 
-
-    <!-- Tag Cloud Page -->
-    <hr>
-<br>
-<ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ACM/">ACM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法模板/">算法模板</a><span class="category-list-count">2</span></li></ul>
-
-<p class="count"></p>
-
-<div class="tags">
-    <a href="/tags/Segment-Tree/" style="font-size: 16px; color: #808080">Segment Tree</a> <a href="/tags/git/" style="font-size: 16px; color: #808080">git</a> <a href="/tags/hexo/" style="font-size: 16px; color: #808080">hexo</a> <a href="/tags/数论/" style="font-size: 35px; color: #000">数论</a> <a href="/tags/板子/" style="font-size: 25.5px; color: #404040">板子</a> <a href="/tags/硬件/" style="font-size: 16px; color: #808080">硬件</a> <a href="/tags/题解/" style="font-size: 16px; color: #808080">题解</a>
-</div>
-<style>
-    .category-list li{
-        display: inline-block;
-        margin: 0 1em .5em 0;
-        padding: 4px;
-        border: 1px solid lightgray;
-        font-size: 1.2rem;
-    }
-    .category-list a { color: gray; }
-    .category-list-item:hover a {
-        color: gray;
-        text-decoration: none;
-    }
-    .category-list-count {
-        margin-left: 2px;
-        font-size: .9rem;
-    }
-    .article-entry ul li:before{ display: none; }
-    .article-inner { text-align: center; }
-    .tags {
-        max-width: 42em;
-        margin: 2em auto;
-        margin-top: 0em;
-    }
-    .tags a {
-        margin-right: 1em;
-        line-height: 65px;
-        border-bottom: 1px solid gray;
-        white-space: nowrap;
-        transition: border-bottom .5s;
-    }
-    .tags a:hover {
-        border-bottom: 3px dotted gray;
-        text-decoration: none;
-    }
-    #count > span {
-        margin: auto .2em;
-        font-weight: bold;
-    }
-</style>
-
-<!-- Count tags and categories -->
-<p id="count">
-        已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
-        共计<span><script>document.write($(".tags > a").length)</script></span>个标签
-</p>
-<script>
-    $('#count').appendTo('.count');
-</script>
-
-          
-        
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/posts/c113256f/">「Codeforce 527 C」.md</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">青城</a></p>
+        <p><span>发布时间:</span>2019-08-02, 15:51:27</p>
+        <p><span>最后更新:</span>2019-08-02, 16:06:25</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/posts/c113256f/" title="「Codeforce 527 C」.md">http://zjt9363.top/posts/c113256f/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://zjt9363.top/posts/c113256f/　　作者: 青城" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/posts/49e54578/">
+                    电子电路设计大赛
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目链接"><span class="toc-number">1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题解"><span class="toc-number">2.</span> <span class="toc-text">题解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -385,7 +375,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"tags　| ZJT's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"「Codeforce 527 C」.md　| ZJT's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -400,6 +390,24 @@
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/posts/49e54578/" title="下一篇: 电子电路设计大赛">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/posts/c113256f/">「Codeforce 527 C」.md</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/49e54578/">电子电路设计大赛</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/44f79f02/">用hexo创建属于自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/32ceef63/">扩展欧几里得算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/985363e6/">米勒拉宾算法</a></li><li class="post-list-item"><a class="post-list-link" href="/posts/7f45ba65/">矩阵快速幂</a></li></ul>
 
 
 
